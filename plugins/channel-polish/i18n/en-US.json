@@ -1,0 +1,20 @@
+{
+	"GUILD_TEXT": "Text channels",
+	"GUILD_VOICE": "Voice channels",
+	"GUILD_FORUM": "Forums",
+	"MEDIA_CHANNEL": "Media channels",
+	"GUILD_CATEGORY": "Categories",
+	"ANNOUNCEMENT_THREAD": "Announcement threads",
+	"PUBLIC_THREAD": "Public threads",
+	"PRIVATE_THREAD": "Private threads",
+	"GROUP_DM": "Group DMs",
+	"NO_FANCY": "Replace fancy Unicode",
+	"NO_FANCY_SUBTITLE": "Turn decorative letters into plain ones and remove decorative symbols.",
+	"REPLACE_HYPHEN": "Replace hyphens with spaces",
+	"CASING": "Letter case",
+	"CASING_NONE": "Unchanged",
+	"CASING_TITLE": "Title case",
+	"CASING_TITLE_SUBTITLE": "Only the first word: Hello world",
+	"CASING_CAPITALIZE": "Capitalize each word",
+	"CASING_CAPITALIZE_SUBTITLE": "Every word: Hello World"
+}

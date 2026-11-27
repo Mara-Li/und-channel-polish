@@ -1,0 +1,6 @@
+{
+	"i18n-ally-next.localesPaths": [
+		"plugins/channel-polish/i18n"
+	],
+	"js/ts.experimental.useTsgo": false
+}
