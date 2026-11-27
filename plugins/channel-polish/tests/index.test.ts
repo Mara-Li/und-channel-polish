@@ -122,6 +122,148 @@ describe('channel names', () => {
 		await stopPlugin();
 	});
 
+	test.each(['getMutableGuildChannelsForGuild', 'getMutableBasicGuildChannelsForGuild'])(
+		'transforms the channels %s returns',
+		async (getter) => {
+			flux.seed({ Channel: { [getter]: () => ({ '1': text }) } });
+			await startPlugin();
+			const { channels } = await read();
+
+			(channels as unknown as Record<string, (guildId: string) => void>)[getter]?.('guild');
+
+			expect(text.name).toBe('💬general-chat');
+			await stopPlugin();
+		},
+	);
+
+	test('starts when Discord lacks the optional getters', async () => {
+		flux.seed({
+			Channel: { getMutablePrivateChannels: undefined },
+			GuildChannel: { getChannels: undefined },
+		});
+		await startPlugin();
+		const { channels } = await read();
+
+		expect(channels.getChannel('1').name).toBe('💬general-chat');
+		await stopPlugin();
+	});
+
+	test('ignores a channel Discord does not know', async () => {
+		await startPlugin();
+		const { channels } = await read();
+
+		expect(channels.getChannel('unknown')).toBeUndefined();
+		await stopPlugin();
+	});
+
+	test.each([
+		[0, 'guildText'],
+		[2, 'guildVoice'],
+		[3, 'groupDm'],
+		[4, 'guildCategory'],
+		[10, 'announcementThread'],
+		[11, 'publicThread'],
+		[12, 'privateThread'],
+		[15, 'guildForum'],
+		[16, 'mediaChannel'],
+	] as const)('gives a channel of type %i the %s settings', async (type, section) => {
+		text.type = type;
+		text.name = 'a-b';
+		settings[section].replaceHyphen = true;
+		await startPlugin();
+		const { channels } = await read();
+
+		expect(channels.getChannel('1').name).toBe('a b');
+		await stopPlugin();
+	});
+
+	// 5 is an announcement channel and 13 a stage channel, which have no settings.
+	test.each([5, 13])('only replaces fancy Unicode for type %i', async (type) => {
+		text.type = type;
+		settings.guildText.replaceHyphen = true;
+		settings.guildText.casing = 'capitalize';
+		await startPlugin();
+		const { channels } = await read();
+
+		expect(channels.getChannel('1').name).toBe('💬general-chat');
+		await stopPlugin();
+	});
+
+	test('leaves fancy Unicode when its setting is off', async () => {
+		const original = text.name;
+
+		await startPlugin();
+		const { channels } = await read();
+
+		channels.getChannel('1');
+		settings.guildText.noFancy = false;
+
+		expect(text.name).toBe(original);
+		await stopPlugin();
+	});
+
+	test('applies a setting changed while the channel settings were open', async () => {
+		await startPlugin();
+		const { channels } = await read();
+		const original = text.name;
+
+		channels.getChannel('1');
+		expect(text.name).toBe('💬general-chat');
+
+		await flux.dispatch({ type: 'CHANNEL_SETTINGS_INIT', channelId: '1' } as never);
+		settings.guildText.replaceHyphen = true;
+		expect(text.name).toBe(original);
+
+		await flux.dispatch({ type: 'CHANNEL_SETTINGS_CLOSE' });
+		expect(text.name).toBe('💬general chat');
+		await stopPlugin();
+	});
+
+	test('keeps the other channels transformed while one is edited', async () => {
+		await startPlugin();
+		const { channels } = await read();
+
+		channels.getChannel('1');
+		channels.getChannel('2');
+		await flux.dispatch({ type: 'CHANNEL_SETTINGS_INIT', channelId: '1' } as never);
+
+		expect(voice.name).toBe('lounge-room');
+		await stopPlugin();
+	});
+
+	test('patches the record a channel creation names', async () => {
+		await startPlugin();
+
+		await flux.dispatch({ type: 'CHANNEL_CREATE', channel: { id: '2' } } as never);
+
+		expect(voice.name).toBe('lounge-room');
+		await stopPlugin();
+	});
+
+	test('gives back the latest name of a record read several times', async () => {
+		await startPlugin();
+		const { channels } = await read();
+
+		channels.getChannel('1');
+		channels.getChannel('1');
+		text.name = '𝗻𝗲𝘄𝘀';
+		await stopPlugin();
+
+		expect(text.name).toBe('𝗻𝗲𝘄𝘀');
+	});
+
+	test('transforms again after a restart, forgetting the channel being edited', async () => {
+		await startPlugin();
+		await flux.dispatch({ type: 'CHANNEL_SETTINGS_INIT', channelId: '1' } as never);
+		await stopPlugin();
+
+		await startPlugin();
+		const { channels } = await read();
+
+		expect(channels.getChannel('1').name).toBe('💬general-chat');
+		await stopPlugin();
+	});
+
 	test('gives the names back on stop', async () => {
 		await startPlugin();
 		const { channels } = await read();
