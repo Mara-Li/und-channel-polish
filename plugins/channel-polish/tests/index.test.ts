@@ -2,6 +2,8 @@ import { flux, startPlugin, stopPlugin } from '@unbound-app/api/testing';
 import { settings } from '@unbound-app/settings';
 import { beforeEach, describe, expect, test } from 'bun:test';
 
+import { DEFAULT_TRANSFORMS } from '../src/lib/transform';
+
 type Channel = { id: string; type: number; name: string };
 
 let text: Channel;
@@ -175,6 +177,21 @@ describe('channel names', () => {
 
 		expect(channels.getChannel('1').name).toBe('a b');
 		await stopPlugin();
+	});
+
+	// settings.ts spells out every section, so check none drifted from the others.
+	test.each([
+		'guildText',
+		'guildVoice',
+		'guildForum',
+		'mediaChannel',
+		'guildCategory',
+		'announcementThread',
+		'publicThread',
+		'privateThread',
+		'groupDm',
+	] as const)('starts the %s settings with the default transforms', (section) => {
+		expect({ ...settings[section] }).toEqual(DEFAULT_TRANSFORMS);
 	});
 
 	// 5 is an announcement channel and 13 a stage channel, which have no settings.

@@ -1,11 +1,11 @@
-import { defineSettings, setting, type MessageKey } from '@unbound-app/settings/schema';
+import { defineSettings, setting } from '@unbound-app/settings/schema';
 
-// The transforms each kind of channel gets. Title case and capitalization exclude each other, hence one choice.
-// The build only reads keys written inside `defineSettings(...)`, so it warns that the keys used here are unused. They
-// are used: do not remove them from i18n/en-US.json.
-function transforms(title: MessageKey) {
-	return setting.section(
-		{ title, displayAs: 'collapsible' },
+// One section per channel type, all with the same settings. Title case and capitalization exclude each other, hence one
+// choice. Keep every section written out here: the build only reads the message keys inside `defineSettings(...)`, so a
+// shared helper would make it report them as unused and stop checking that they exist.
+export default defineSettings({
+	guildText: setting.section(
+		{ title: 'GUILD_TEXT', displayAs: 'collapsible' },
 		{
 			noFancy: setting.boolean({
 				default: true,
@@ -27,17 +27,197 @@ function transforms(title: MessageKey) {
 				},
 			}),
 		},
-	);
-}
-
-export default defineSettings({
-	guildText: transforms('GUILD_TEXT'),
-	guildVoice: transforms('GUILD_VOICE'),
-	guildForum: transforms('GUILD_FORUM'),
-	mediaChannel: transforms('MEDIA_CHANNEL'),
-	guildCategory: transforms('GUILD_CATEGORY'),
-	announcementThread: transforms('ANNOUNCEMENT_THREAD'),
-	publicThread: transforms('PUBLIC_THREAD'),
-	privateThread: transforms('PRIVATE_THREAD'),
-	groupDm: transforms('GROUP_DM'),
+	),
+	guildVoice: setting.section(
+		{ title: 'GUILD_VOICE', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	guildForum: setting.section(
+		{ title: 'GUILD_FORUM', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	mediaChannel: setting.section(
+		{ title: 'MEDIA_CHANNEL', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	guildCategory: setting.section(
+		{ title: 'GUILD_CATEGORY', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	announcementThread: setting.section(
+		{ title: 'ANNOUNCEMENT_THREAD', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	publicThread: setting.section(
+		{ title: 'PUBLIC_THREAD', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	privateThread: setting.section(
+		{ title: 'PRIVATE_THREAD', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
+	groupDm: setting.section(
+		{ title: 'GROUP_DM', displayAs: 'collapsible' },
+		{
+			noFancy: setting.boolean({
+				default: true,
+				title: 'NO_FANCY',
+				subtitle: 'NO_FANCY_SUBTITLE',
+			}),
+			replaceHyphen: setting.boolean({ default: false, title: 'REPLACE_HYPHEN' }),
+			casing: setting.choice({
+				default: 'none',
+				title: 'CASING',
+				displayAs: 'radio',
+				options: {
+					none: 'CASING_NONE',
+					title: { title: 'CASING_TITLE', subtitle: 'CASING_TITLE_SUBTITLE' },
+					capitalize: {
+						title: 'CASING_CAPITALIZE',
+						subtitle: 'CASING_CAPITALIZE_SUBTITLE',
+					},
+				},
+			}),
+		},
+	),
 });

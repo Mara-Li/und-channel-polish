@@ -1,13 +1,26 @@
 {
-	"id": "Mara-Li.channel-polish",
+	"id": "mara-li.channel-polish",
 	"name": "Channel Polish",
 	"description": "Normalize channel name to remove fancy Unicode characters, remove hyphen and capitalize (or title case). Based on cleanChannelName.",
 	"authors": [
 		{
 			"name": "Mara-Li",
 			"id": "189390243676422144"
+		},
+		{
+			"name": "sapphire",
+			"id": "757982547861962752"
+		},
+		{
+			"name": "AutumnVN",
+			"id": "393694671383166998"
+		},
+		{
+			"name": "adrian",
+			"id": "224617799434108928"
 		}
 	],
 	"version": "1.0.0",
-	"main": "index.tsx"
+	"main": "index.tsx",
+	"icon": "TextIcon"
 }
