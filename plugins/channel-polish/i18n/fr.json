@@ -1,0 +1,20 @@
+{
+	"GUILD_TEXT": "Salons textuels",
+	"GUILD_VOICE": "Salons vocaux",
+	"GUILD_FORUM": "Forums",
+	"MEDIA_CHANNEL": "Salons médias",
+	"GUILD_CATEGORY": "Catégories",
+	"ANNOUNCEMENT_THREAD": "Fils d'annonces",
+	"PUBLIC_THREAD": "Fils publics",
+	"PRIVATE_THREAD": "Fils privés",
+	"GROUP_DM": "Groupes de messages privés",
+	"NO_FANCY": "Remplacer l'Unicode fantaisie",
+	"NO_FANCY_SUBTITLE": "Transforme les lettres décoratives en lettres simples et retire les symboles décoratifs.",
+	"REPLACE_HYPHEN": "Remplacer les tirets par des espaces",
+	"CASING": "Casse des lettres",
+	"CASING_NONE": "Inchangée",
+	"CASING_TITLE": "Majuscule initiale",
+	"CASING_TITLE_SUBTITLE": "Premier mot uniquement : Bonjour le monde",
+	"CASING_CAPITALIZE": "Majuscule à chaque mot",
+	"CASING_CAPITALIZE_SUBTITLE": "Tous les mots : Bonjour Le Monde"
+}
