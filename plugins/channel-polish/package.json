@@ -5,7 +5,8 @@
 	"scripts": {
 		"build": "rollup -c",
 		"lint": "oxlint",
-		"test": "bun test"
+		"test": "bun test",
+		"typecheck": "tsc --noEmit -p ."
 	},
 	"devDependencies": {
 		"@types/bun": "latest",

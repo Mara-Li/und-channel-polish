@@ -11,5 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - run: bun install
+      - run: bun install --frozen-lockfile
+      # Builds first: it regenerates the typings the type check reads.
       - run: bunx ubd build
+      - run: bun run --filter '*' typecheck
+      - run: bun run --filter '*' lint
+      - run: bun run --filter '*' test
