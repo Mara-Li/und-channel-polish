@@ -16,5 +16,18 @@
 	"CASING_TITLE": "Majuscule initiale",
 	"CASING_TITLE_SUBTITLE": "Premier mot uniquement : Bonjour le monde",
 	"CASING_CAPITALIZE": "Majuscule à chaque mot",
-	"CASING_CAPITALIZE_SUBTITLE": "Tous les mots : Bonjour Le Monde"
+	"CASING_CAPITALIZE_SUBTITLE": "Tous les mots : Bonjour Le Monde",
+	"GLOBAL_SETTINGS": "Réglages globaux",
+	"SERVERS": "Réglages par serveur",
+	"SERVERS_SUBTITLE": "Les serveurs ajoutés ici ignorent les réglages globaux.",
+	"ADD_SERVER": "Ajouter un serveur",
+	"SEARCH_SERVERS": "Rechercher par nom ou ID",
+	"NO_SERVERS": "Aucun serveur trouvé",
+	"SERVER_CUSTOM": "Réglages personnalisés",
+	"SERVER_DISABLED": "Noms d’origine",
+	"SERVER_ENABLED": "Transformer les noms de salons",
+	"SERVER_ENABLED_SUBTITLE": "Désactivé, ce serveur affiche ses noms d’origine.",
+	"SERVER_SETTINGS": "Réglages de ce serveur",
+	"REMOVE_SERVER": "Retirer le serveur",
+	"REMOVE_SERVER_CONFIRM": "Supprimer les réglages de ce serveur ? Il suivra de nouveau les réglages globaux."
 }

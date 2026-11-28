@@ -16,5 +16,18 @@
 	"CASING_TITLE": "Title case",
 	"CASING_TITLE_SUBTITLE": "Only the first word: Hello world",
 	"CASING_CAPITALIZE": "Capitalize each word",
-	"CASING_CAPITALIZE_SUBTITLE": "Every word: Hello World"
+	"CASING_CAPITALIZE_SUBTITLE": "Every word: Hello World",
+	"GLOBAL_SETTINGS": "Global settings",
+	"SERVERS": "Server overrides",
+	"SERVERS_SUBTITLE": "The servers added here ignore the global settings.",
+	"ADD_SERVER": "Add server",
+	"SEARCH_SERVERS": "Search by name or ID",
+	"NO_SERVERS": "No server found",
+	"SERVER_CUSTOM": "Custom settings",
+	"SERVER_DISABLED": "Original names",
+	"SERVER_ENABLED": "Transform channel names",
+	"SERVER_ENABLED_SUBTITLE": "When off, this server shows its original names.",
+	"SERVER_SETTINGS": "Settings of this server",
+	"REMOVE_SERVER": "Remove server",
+	"REMOVE_SERVER_CONFIRM": "Remove this server’s settings? It will follow the global settings again."
 }

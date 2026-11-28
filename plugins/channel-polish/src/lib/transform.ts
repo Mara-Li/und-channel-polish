@@ -25,6 +25,9 @@ export const CHANNEL_TYPE_KEYS = {
 	16: 'mediaChannel',
 } as const;
 
+/** The name of a settings section. */
+export type SectionKey = (typeof CHANNEL_TYPE_KEYS)[keyof typeof CHANNEL_TYPE_KEYS];
+
 // NFKC already turns the mathematical, fullwidth and circled letters into plain ones; small capitals have no
 // compatibility form, so they are mapped here.
 const SMALL_CAPS: Record<string, string> = {

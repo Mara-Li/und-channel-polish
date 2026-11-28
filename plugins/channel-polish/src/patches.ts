@@ -1,14 +1,9 @@
 import { flux, patcher, storage } from '@unbound-app/api';
-import { settings } from '@unbound-app/settings';
 
-import {
-	CHANNEL_TYPE_KEYS,
-	DEFAULT_TRANSFORMS,
-	transformChannelName,
-	type ChannelTransforms,
-} from '~/lib/transform';
+import { resolveTransforms } from '~/lib/overrides';
+import { transformChannelName } from '~/lib/transform';
 
-type Channel = { id: string; type?: number; name?: string };
+type Channel = { id: string; type?: number; name?: string; guild_id?: string | null };
 
 type ChannelsById = Record<string, Channel | undefined>;
 
@@ -33,12 +28,6 @@ let editing: string | null = null;
 // Changes with the settings, so each record transforms its name again.
 let generation = 0;
 
-function transformsFor(type: number | undefined): ChannelTransforms {
-	const key = CHANNEL_TYPE_KEYS[type as keyof typeof CHANNEL_TYPE_KEYS];
-
-	return key ? settings[key] : DEFAULT_TRANSFORMS;
-}
-
 function patchChannel(channel: Channel | undefined): void {
 	if (!channel || typeof channel.name !== 'string' || originals.has(channel)) return;
 
@@ -52,7 +41,8 @@ function patchChannel(channel: Channel | undefined): void {
 			if (channel.id === editing) return original;
 
 			if (shown?.generation !== generation || shown.source !== original) {
-				const value = transformChannelName(original, transformsFor(channel.type));
+				const transforms = resolveTransforms(channel.type, channel.guild_id);
+				const value = transforms ? transformChannelName(original, transforms) : original;
 
 				shown = { generation, source: original, value };
 			}

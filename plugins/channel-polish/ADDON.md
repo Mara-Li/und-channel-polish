@@ -46,6 +46,15 @@ Kinds of channel without settings, such as announcement and stage channels, only
 
 Changes apply without restarting Discord.
 
+## :globe: Server overrides
+
+A server can ignore the global settings. In the plugin's settings, choose **Add server**, pick it, then open it to:
+
+- turn **Transform channel names** off, which shows its original names;
+- or change the settings of each kind of channel for this server only. They start as a copy of the global ones, and later global changes do not affect them.
+
+**Remove server** makes it follow the global settings again. Group DMs always use the global settings.
+
 ## :triangle-warning: Good to know
 
 - **Replace fancy Unicode** only keeps Latin letters, including common accented ones, currency symbols, common punctuation and emoji. It removes other writing systems, such as Cyrillic, Greek or Japanese, and some accented letters, such as the Vietnamese ones. Turn it off for the kinds of channel that use them.

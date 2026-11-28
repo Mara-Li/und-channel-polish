@@ -2,6 +2,8 @@ import { patcher } from '@unbound-app/api';
 
 import { patchChannelNames, restoreChannelNames } from '~/patches';
 
+export { SettingsPanel } from '~/components/settings-panel';
+
 export function start() {
 	patchChannelNames();
 }

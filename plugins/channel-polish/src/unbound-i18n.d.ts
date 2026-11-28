@@ -39,6 +39,32 @@ declare module '@unbound-app/i18n' {
 		readonly CASING_CAPITALIZE: string;
 		/** Every word: Hello World */
 		readonly CASING_CAPITALIZE_SUBTITLE: string;
+		/** Global settings */
+		readonly GLOBAL_SETTINGS: string;
+		/** Server overrides */
+		readonly SERVERS: string;
+		/** The servers added here ignore the global settings. */
+		readonly SERVERS_SUBTITLE: string;
+		/** Add server */
+		readonly ADD_SERVER: string;
+		/** Search by name or ID */
+		readonly SEARCH_SERVERS: string;
+		/** No server found */
+		readonly NO_SERVERS: string;
+		/** Custom settings */
+		readonly SERVER_CUSTOM: string;
+		/** Original names */
+		readonly SERVER_DISABLED: string;
+		/** Transform channel names */
+		readonly SERVER_ENABLED: string;
+		/** When off, this server shows its original names. */
+		readonly SERVER_ENABLED_SUBTITLE: string;
+		/** Settings of this server */
+		readonly SERVER_SETTINGS: string;
+		/** Remove server */
+		readonly REMOVE_SERVER: string;
+		/** Remove this server’s settings? It will follow the global settings again. */
+		readonly REMOVE_SERVER_CONFIRM: string;
 	};
 
 	/** The placeholder values each message that has placeholders takes. */
